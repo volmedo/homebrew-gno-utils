@@ -2,11 +2,11 @@
 #                https://rubydoc.brew.sh/Formula
 # PLEASE REMOVE ALL GENERATED COMMENTS BEFORE SUBMITTING YOUR PULL REQUEST!
 class Gnokey < Formula
-  desc ""
-  homepage ""
+  desc "gnokey is a tool for managing https://gno.land accounts and interact with instances."
+  homepage "https://gno.land/"
   url "https://github.com/gnolang/gno/archive/refs/tags/chain/test3.2.tar.gz"
   sha256 "0c9deeb4171d2c2c4fe281ae1d02caef8ba66c72868647e57aa2f70e2236a5ce"
-  license ""
+  license "gno-1.0"
 
   depends_on "go" => :build
 
