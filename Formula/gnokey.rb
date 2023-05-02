@@ -1,6 +1,3 @@
-# Documentation: https://docs.brew.sh/Formula-Cookbook
-#                https://rubydoc.brew.sh/Formula
-# PLEASE REMOVE ALL GENERATED COMMENTS BEFORE SUBMITTING YOUR PULL REQUEST!
 class Gnokey < Formula
   desc "gnokey is a tool for managing https://gno.land accounts and interact with instances."
   homepage "https://gno.land/"
@@ -11,8 +8,12 @@ class Gnokey < Formula
   depends_on "go" => :build
 
   def install
-    # ENV.deparallelize  # if your formula fails when building in parallel
-    system "go", "build", *std_go_args(ldflags: "-s -w")
+    # std_go_args includes -trimpath, which removes references to the local file system in the resulting binary,
+    # essentially making package paths relative, which breaks amino 
+    # TODO: Check why amino requires absolute file paths
+    system "go", "build", "-o", bin/name, "-ldflags=-s -w", "./cmd/gnokey"
+    prefix.install "README.md" 
+    prefix.install "LICENSE.md" 
   end
 
   test do
